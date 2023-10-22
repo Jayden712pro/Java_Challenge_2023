@@ -9,7 +9,7 @@ public class Die {
     public int sideNum = 0;
     public int rolls;
     public int lastRoll = -1;
-    ArrayList<Integer> list_rolls = new ArrayList<Integer>();
+    public ArrayList<Integer> list_rolls = new ArrayList<Integer>();
 
     public Die(){
         sideNum = 6;
@@ -26,6 +26,10 @@ public class Die {
 
     int numSides(){
         return sideNum;
+    }
+
+    void reAssignSide(int x){
+        sideNum = x;
     }
 
     int roll(){
@@ -49,7 +53,7 @@ public class Die {
                 roll();
                 temprolls.add(readLastRoll());
             }
-            temprolls = list_rolls;
+            list_rolls = temprolls;
 
         }
         else {
@@ -59,16 +63,17 @@ public class Die {
     }
 
     public String printListCount(){
-        String returner = "The numbers of rolls that landed on that number";
+        String returner = "The numbers of rolls that landed on that number\n";
         for(int i = 1; i < sideNum+1; i++){
             int numofnum = 0;
-            for(int i2 = 0; i < list_rolls.size(); i2++){
-                int currentroll = list_rolls.get(i2);
-                if(currentroll == i){
+            System.out.println(list_rolls.size());
+            for(int i2 = 0; i2 < list_rolls.size(); i2++){
+                Integer currentroll = list_rolls.get(i2);
+                if(currentroll.intValue() == i){
                     numofnum++;
                 }
             }
-            returner = "Rolls on " + i + ": " + numofnum + "\n";
+            returner += "Rolls on " + i + ": " + numofnum + "\n";
         }
         return returner;
     }
